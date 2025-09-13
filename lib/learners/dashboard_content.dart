@@ -33,23 +33,29 @@ class LearnerDashboardContent extends StatelessWidget {
                     const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Column(
-                          children: [
-                            Text('3', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-                            Text('Upcoming Assignments'),
-                          ],
+                        Expanded(
+                          child: Column(
+                            children: [
+                              Text('3', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+                              Text('Upcoming Assignments', textAlign: TextAlign.center),
+                            ],
+                          ),
                         ),
-                        Column(
-                          children: [
-                            Text('5', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-                            Text('Total Courses'),
-                          ],
+                        Expanded(
+                          child: Column(
+                            children: [
+                              Text('5', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+                              Text('Total Courses', textAlign: TextAlign.center),
+                            ],
+                          ),
                         ),
-                        Column(
-                          children: [
-                            Text('2', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-                            Text('Unread Announcements'),
-                          ],
+                        Expanded(
+                          child: Column(
+                            children: [
+                              Text('2', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+                              Text('Unread Announcements', textAlign: TextAlign.center),
+                            ],
+                          ),
                         ),
                       ],
                     ),
