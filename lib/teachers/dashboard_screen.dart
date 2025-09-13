@@ -1,48 +1,70 @@
 import 'package:flutter/material.dart';
 import 'assignments_screen.dart';
 import 'class_schedule_screen.dart';
-import 'student_management_screen.dart';
 import 'notifications_screen.dart';
+import 'dashboard_content.dart';
+import 'teacher_base_screen.dart'; // Import the new base screen
 
-class TeacherDashboardScreen extends StatelessWidget {
+class TeacherDashboardScreen extends StatefulWidget {
   const TeacherDashboardScreen({super.key});
 
   @override
+  State<TeacherDashboardScreen> createState() => _TeacherDashboardScreenState();
+}
+
+class _TeacherDashboardScreenState extends State<TeacherDashboardScreen> {
+  int _selectedIndex = 0;
+
+  static final List<Widget> _widgetOptions = <Widget>[
+    const TeacherDashboardContent(), // Placeholder for Dashboard
+    const TeacherAssignmentsScreen(),
+    const TeacherClassScheduleScreen(), // Assuming Class Schedule is now 'Classes'
+    const TeacherNotificationsScreen(),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Teacher Dashboard')),
-      body: ListView(
-        padding: const EdgeInsets.all(16),
-        children: [
-          ListTile(
-            title: const Text('Assignments'),
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const TeacherAssignmentsScreen()),
-            ),
+    return TeacherBaseScreen(
+      appBarTitle: 'Teacher Dashboard',
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // Implement action for floating action button on dashboard
+        },
+        backgroundColor: Colors.blueAccent,
+        child: const Icon(Icons.add),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.dashboard),
+            label: 'Dashboard',
           ),
-          ListTile(
-            title: const Text('Class Schedule'),
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const TeacherClassScheduleScreen()),
-            ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.assignment),
+            label: 'Assignments',
           ),
-          ListTile(
-            title: const Text('Student Management'),
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const TeacherStudentManagementScreen()),
-            ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.school),
+            label: 'Classes',
           ),
-          ListTile(
-            title: const Text('Notifications'),
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const TeacherNotificationsScreen()),
-            ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.notifications),
+            label: 'Notifications',
           ),
         ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.blue,
+        unselectedItemColor: Colors.grey,
+        onTap: _onItemTapped,
+      ),
+      child: Center(
+        child: _widgetOptions.elementAt(_selectedIndex),
       ),
     );
   }

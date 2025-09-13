@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'teachers/login_screen.dart';
 import 'learners/login_screen.dart';
@@ -16,6 +18,17 @@ class MyApp extends StatelessWidget {
       title: 'Class Bridge',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        colorScheme: ColorScheme.fromSwatch().copyWith(
+          primary: const Color(0xFF64B5F6), // Light Blue
+          secondary: const Color(0xFF2196F3), // Medium Blue
+          background: Colors.white,
+        ),
+        textTheme: const TextTheme(
+          bodyLarge: TextStyle(fontFamily: 'Roboto'),
+          bodyMedium: TextStyle(fontFamily: 'Roboto'),
+          titleLarge: TextStyle(fontFamily: 'Roboto', fontWeight: FontWeight.bold),
+          labelLarge: TextStyle(fontFamily: 'Roboto'),
+        ),
       ),
       home: const RoleSelectorScreen(),
     );
